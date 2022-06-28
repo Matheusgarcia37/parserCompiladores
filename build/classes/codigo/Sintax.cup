@@ -93,6 +93,8 @@ INCREMENTO,
 OP_ARI_OU_LO,
 ATRIBUICAO,
 VALOR,
+NUMEROAUX,
+POSITIVO_OU_NEGATIVO,
 AUX1,
 AUX2,
 AUX3,
@@ -110,7 +112,15 @@ INICIO ::=
 ;
 
 MAISCONST ::=
-    Hash Constante Id Numero MAISCONST |
+    Hash Constante Id NUMEROAUX MAISCONST |
+;
+
+NUMEROAUX ::=
+    POSITIVO_OU_NEGATIVO Numero | POSITIVO_OU_NEGATIVO Numero Ponto Numero
+;
+
+POSITIVO_OU_NEGATIVO ::=
+    Subtracao |
 ;
 
 COMANDO ::= 
@@ -130,7 +140,7 @@ TIPO ::=
 ;
 
 LISTAIDS ::= 
-    Id AUX2
+    Id AUX2 | Id AbreCO Numero FechaCO | Id AbreCO Numero FechaCO AbreCO Numero FechaCO
 ;
 
 AUX2 ::= 
@@ -154,7 +164,7 @@ OP_LO ::=
 ;
 
 EXPRESSAO ::=
-    Numero AUX5 | Id AUX5 | AbreP EXPRESSAO FechaP AUX5 | INCREMENTO Numero AUX6 | INCREMENTO Id AUX6 | INCREMENTO AbreP EXPRESSAO FechaP AUX6 | Not EXPRESSAO
+    NUMEROAUX AUX5 | Id AUX5 | AbreP EXPRESSAO FechaP AUX5 | INCREMENTO Numero AUX6 | INCREMENTO Id AUX6 | INCREMENTO AbreP EXPRESSAO FechaP AUX6 | Not EXPRESSAO
 ;
 
 AUX5 ::=
@@ -190,7 +200,7 @@ LACO_FOR ::=
 ;
 
 ATRIBUICAO ::=
-   Id Recebe VALOR Pv
+   Id Recebe VALOR Pv | Id AbreCO Numero FechaCO Recebe VALOR Pv | Id AbreCO Numero FechaCO AbreCO Numero FechaCO Recebe VALOR Pv
 ;
 
 VALOR ::= 

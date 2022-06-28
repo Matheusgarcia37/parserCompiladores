@@ -12,7 +12,6 @@ D=[0-9]+
 P=[^0-9a-zA-Z\n\t ]?
 espaco=[ ]+
 espacoString=[ ,\\t,\\r,\\n]+
-quebraLinhaString=[\t,\r,\n]+
 bN=[\n]+
 bT=[\t]+
 bR=[\r]+
@@ -84,5 +83,4 @@ bR=[\r]+
 ("(-"{D}+")")|{D}+ {return new Symbol(sym.Numero, yychar, yyline, yytext());}
 {D}({L}|{D})* {return new Symbol(sym.ERROR, yychar, yyline, yytext());}
 (\"({espacoString} | {P} | {L} | {D})+ \") {return new Symbol(sym.String, yychar, yyline, yytext());}
-(\"({quebraLinhaString} | {espacoString} | {P} | {L} | {D})+ \") {return new Symbol(sym.QuebraLinhaStringError, yychar, yyline, yytext());}
  . {return new Symbol(sym.ERROR, yychar, yyline, yytext());}
