@@ -134,11 +134,11 @@ LISTAIDS ::=
 ;
 
 AUX2 ::= 
-Vir LISTAIDS |
+    Vir LISTAIDS |
 ;
 
 COMANDOS ::= 
-    REPETICAO COMANDOS | LER COMANDOS | SE COMANDOS | ATRIBUICAO COMANDOS |
+    REPETICAO COMANDOS | LER COMANDOS | IMPRIMIR COMANDOS | SE COMANDOS | ATRIBUICAO COMANDOS |
 ;
 
 INCREMENTO ::=
@@ -177,10 +177,6 @@ AUX3 ::=
     Else AbreCH COMANDOS FechaCH |
 ;
 
-LER ::=
-    Scanf AbreP Id FechaP Pv
-;
-
 REPETICAO ::=
    LACO_WHILE | LACO_FOR
 ;
@@ -189,10 +185,22 @@ LACO_WHILE ::=
     Enquanto AbreP EXPRESSAO FechaP AbreCH COMANDOS FechaCH
 ;
 
+LACO_FOR ::=
+    Para AbreP ATRIBUICAO EXPRESSAO Pv Id INCREMENTO FechaP AbreCH COMANDOS FechaCH
+;
+
 ATRIBUICAO ::=
    Id Recebe VALOR Pv
 ;
 
 VALOR ::= 
     EXPRESSAO | String
+;
+
+LER ::=
+    Scanf AbreP Id FechaP Pv
+;
+
+IMPRIMIR ::=
+    Printf AbreP LISTAIDS FechaP Pv | Printf AbreP String FechaP Pv
 ;
