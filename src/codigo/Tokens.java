@@ -1,0 +1,69 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Enum.java to edit this template
+ */
+package codigo;
+
+/**
+ *
+ * @author mathe
+ */
+public enum Tokens {
+    ContLinha,
+    Hash,
+    Include,
+    Lib,
+    Constante,
+    Int,
+    Double,
+    Void,
+    Char,
+    Float,
+    If,
+    Else,
+    Scanf,
+    Printf,
+    Main,
+    Return,
+    Enquanto,
+    Para,
+    AndAnd,
+    Or,
+    Equal,
+    AbreP,
+    FechaP,
+    AbreCO,
+    FechaCO,
+    AbreCH,
+    FechaCH,
+    Soma,
+    Subtracao,
+    Divisao,
+    AspasSimples,
+    AspasDuplas,
+    ContraBarra,
+    Not,
+    Resto,
+    Multiplicacao,
+    Menor,
+    Maior,
+    Recebe,
+    PulaLinha,
+    Tab,
+    Diferente,
+    MaiorIgual,
+    MenorIgual,
+    Ponto,
+    Vir,
+    Pv,
+    And,
+    aspasDuplas,
+    Underline,
+    ERROR,
+    Id,
+    Numero,
+    QuebraLinhaStringError,
+    String,
+    Incremento,
+    Decremento
+}
