@@ -89,11 +89,16 @@ EA,
 LACO_WHILE,
 OP_ARI,
 OP_LO,
+INCREMENTO,
+OP_ARI_OU_LO,
 AUX1,
 AUX2,
 AUX3,
 AUX4,
-AUX5
+AUX5,
+AUX6,
+AUX7,
+AUX8
 ;
 
 start with INICIO;
@@ -134,6 +139,10 @@ COMANDOS ::=
     REPETICAO COMANDOS | LER COMANDOS | SE COMANDOS |
 ;
 
+INCREMENTO ::=
+    Incremento | Decremento
+;
+
 OP_ARI ::=
    Multiplicacao | Divisao | Soma | Subtracao | Resto
 ;
@@ -151,11 +160,19 @@ OP_LO ::=
 ;
 
 EL ::=
-    Numero AUX5 | Id AUX5 | AbreP EL FechaP AUX5
+    Numero AUX5 | Id AUX5 | AbreP EL FechaP AUX5 | INCREMENTO Numero AUX6 | INCREMENTO Id AUX6 | INCREMENTO AbreP EL FechaP AUX6
 ;
 
 AUX5 ::=
-    OP_ARI EL | OP_LO EL |
+   OP_ARI_OU_LO EL | INCREMENTO AUX6 |
+;
+
+AUX6 ::=
+    OP_ARI_OU_LO EL |
+;
+
+OP_ARI_OU_LO ::=
+    OP_ARI | OP_LO
 ;
 
 SE ::= 
