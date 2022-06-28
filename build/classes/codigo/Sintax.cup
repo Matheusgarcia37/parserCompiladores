@@ -84,13 +84,15 @@ REPETICAO,
 LER,
 IMPRIMIR,
 SE,
-EL,
-EA,
+EXPRESSAO,
 LACO_WHILE,
+LACO_FOR,
 OP_ARI,
 OP_LO,
 INCREMENTO,
 OP_ARI_OU_LO,
+ATRIBUICAO,
+VALOR,
 AUX1,
 AUX2,
 AUX3,
@@ -136,7 +138,7 @@ Vir LISTAIDS |
 ;
 
 COMANDOS ::= 
-    REPETICAO COMANDOS | LER COMANDOS | SE COMANDOS |
+    REPETICAO COMANDOS | LER COMANDOS | SE COMANDOS | ATRIBUICAO COMANDOS |
 ;
 
 INCREMENTO ::=
@@ -147,28 +149,20 @@ OP_ARI ::=
    Multiplicacao | Divisao | Soma | Subtracao | Resto
 ;
 
-EA ::= 
-    AbreP EA FechaP AUX4 | Numero AUX4 | Id AUX4
-;
-
-AUX4 ::=
-    OP_ARI EA |
-;
-
 OP_LO ::= 
-    Equal | Diferente | Menor | MenorIgual | Maior | MaiorIgual | Or | AndAnd | Not
+    Equal | Diferente | Menor | MenorIgual | Maior | MaiorIgual | Or | AndAnd
 ;
 
-EL ::=
-    Numero AUX5 | Id AUX5 | AbreP EL FechaP AUX5 | INCREMENTO Numero AUX6 | INCREMENTO Id AUX6 | INCREMENTO AbreP EL FechaP AUX6
+EXPRESSAO ::=
+    Numero AUX5 | Id AUX5 | AbreP EXPRESSAO FechaP AUX5 | INCREMENTO Numero AUX6 | INCREMENTO Id AUX6 | INCREMENTO AbreP EXPRESSAO FechaP AUX6 | Not EXPRESSAO
 ;
 
 AUX5 ::=
-   OP_ARI_OU_LO EL | INCREMENTO AUX6 |
+   OP_ARI_OU_LO EXPRESSAO | INCREMENTO AUX6 |
 ;
 
 AUX6 ::=
-    OP_ARI_OU_LO EL |
+    OP_ARI_OU_LO EXPRESSAO |
 ;
 
 OP_ARI_OU_LO ::=
@@ -176,7 +170,7 @@ OP_ARI_OU_LO ::=
 ;
 
 SE ::= 
-    If AbreP EL FechaP AbreCH COMANDOS FechaCH AUX3
+    If AbreP EXPRESSAO FechaP AbreCH COMANDOS FechaCH AUX3
 ;
 
 AUX3 ::=
@@ -188,10 +182,17 @@ LER ::=
 ;
 
 REPETICAO ::=
-   LACO_WHILE
+   LACO_WHILE | LACO_FOR
 ;
 
 LACO_WHILE ::=
-    Enquanto AbreP EL FechaP AbreCH COMANDOS FechaCH
+    Enquanto AbreP EXPRESSAO FechaP AbreCH COMANDOS FechaCH
 ;
 
+ATRIBUICAO ::=
+   Id Recebe VALOR Pv
+;
+
+VALOR ::= 
+    EXPRESSAO | String
+;
